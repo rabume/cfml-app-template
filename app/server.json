@@ -1,0 +1,13 @@
+{
+    "app":{
+        "cfengine":"lucee@5.3"
+    },
+    "web":{
+        "directoryBrowsing":false,
+        "blockCFAdmin": "${APP_BLOCK_CFADMIN}",
+        "rewrites":{
+            "enable":true,
+            "config":"./rewrite.xml"
+        }
+    }
+}

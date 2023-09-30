@@ -1,0 +1,62 @@
+version: '3'
+services:
+    cfml:
+        container_name: cfml
+        ports:
+            - 8080:8080
+        environment:
+            BOX_SERVER_PROFILE: production
+            PORT: 8080
+        env_file:
+            - ./.env
+        volumes:
+            - cfml_app:/app
+        build:
+            context: ../
+            dockerfile: deploy/app.Dockerfile
+        networks:
+            - internal
+        depends_on:
+            - db
+
+    client:
+        container_name: client
+        ports:
+            - 3000:80
+        env_file:
+            - ./.env
+        volumes:
+            - nginx_html:/usr/share/nginx/html
+        build:
+            context: ../
+            dockerfile: deploy/client.Dockerfile
+            args:
+                - VITE_API_URL=${VITE_API_URL}
+        networks:
+            - internal
+        depends_on:
+            - cfml
+
+    db:
+        container_name: db
+        image: postgres:13.5-alpine3.15
+        restart: unless-stopped
+        ports:
+            - 5432:5432
+        networks:
+            - internal
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        environment:
+            POSTGRES_DB: ${DB_DATABASE}
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            PGDATA: /var/lib/postgresql/data
+
+networks:
+    internal:
+
+volumes:
+    cfml_app:
+    nginx_html:
+    pgdata:

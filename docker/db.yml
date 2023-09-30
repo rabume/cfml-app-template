@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+    db:
+        container_name: db
+        image: postgres:13.5-alpine3.15
+        restart: unless-stopped
+        ports:
+            - ${DB_PORT}:5432
+        networks:
+            - internal
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        env_file: ../.env
+        environment:
+            POSTGRES_DB: ${DB_DATABASE}
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            PGDATA: /var/lib/postgresql/data
+
+networks:
+    internal:
+
+volumes:
+    pgdata:

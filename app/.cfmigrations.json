@@ -1,0 +1,20 @@
+{
+	"default": {
+		"manager": "cfmigrations.models.QBMigrationManager",
+		"migrationsDirectory": "db/migrations/",
+		"seedsDirectory": "db/seed/",
+		"properties": {
+			"defaultGrammar": "PostgresGrammar@qb",
+			"schema": "public",
+			"migrationsTable": "migrations",
+			"connectionInfo": {
+				"host": "${DB_HOST}",
+				"username": "${DB_USER}",
+				"password": "${DB_PASSWORD}",
+				"database": "${DB_DATABASE}",
+				"port": "${DB_PORT}",
+				"type": "postgresql"
+			}
+		}
+	}
+}

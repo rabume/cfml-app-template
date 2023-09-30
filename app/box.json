@@ -1,0 +1,19 @@
+{
+	"dependencies": {
+		"jwt-cfml": "^1.2.0",
+		"taffy": "^3.1.0",
+		"commandbox-migrations": "^5.2.1"
+	},
+	"devDependencies": {
+		"commandbox-cfformat": "^0.19.0"
+	},
+	"installPaths": {
+		"jwt-cfml": "modules/jwtcfml/",
+		"taffy": "taffy/"
+	},
+	"scripts": {
+		"format": "cfformat run core/,application.cfc --overwrite",
+		"format:watch": "cfformat watch core/,application.cfc,db/ ./.cfformat.json",
+		"format:check": "cfformat check core/,application.cfc"
+	}
+}

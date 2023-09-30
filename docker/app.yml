@@ -1,0 +1,34 @@
+version: '3'
+services:
+    cfml:
+        container_name: cfml
+        ports:
+            - 8080:8080
+        volumes:
+            - ../app/:/app
+            - modules:/app/modules
+            - taffy:/app/taffy
+        env_file:
+            - ../.env
+        environment:
+            BOX_SERVER_PROFILE: ${APP_ENVIRONMENT}
+            CFCONFIG_ADMINPASSWORD: ${APP_ADMIN_PASS}
+            PORT: 8080
+        build:
+            dockerfile: docker/app.Dockerfile
+            context: ../
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://cfml']
+            interval: 1m30s
+            timeout: 5s
+            retries: 10
+            start_period: 25s
+        networks:
+            - internal
+
+networks:
+    internal:
+
+volumes:
+    modules:
+    taffy:

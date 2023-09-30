@@ -1,0 +1,26 @@
+{
+    "datasources": {
+        "${APP_DATASOURCE}": {
+            "host": "${DB_HOST}",
+            "dbdriver": "postgresql",
+            "username": "${DB_USER}",
+            "password": "${DB_PASSWORD}",
+            "database": "${DB_DATABASE}",
+            "port": "${DB_PORT}",
+            "dsn": "jdbc:postgresql://{host}:{port}/{database}",
+            "bundleName": "org.postgresql.jdbc",
+            "bundleVersion": "42.6.0"
+        }
+    },
+    "mailServers": [{
+        "username": "${MAIL_USERNAME}",
+        "password": "${MAIL_PASSWORD}",
+        "smtp": "${MAIL_SMTP}",
+        "port": "${MAIL_PORT}",
+        "tls": "${MAIL_TLS}",
+        "ssl": "${MAIL_SSL}"
+    }],
+    "useTimeServer": "true",
+    "templateCharset": "UTF-8",
+    "webCharset": "UTF-8"
+}
