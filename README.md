@@ -56,3 +56,9 @@ Currently, the global key is being utilized for user authentication. In a real-w
 | `make migrate` | Run database migrations (fresh)   |
 | `make seed`    | Run database seeds                |
 | `make watch`   | Watch for file changes            |
+
+## ⛏️ Deployment
+
+You can find the deployment configuration in the `/deploy` directory. Right now I use a `makefile` to automate the deployment process. This is optional and can be replaced. The `prod.env.example` contains the environment variables for the production environment. Instead of using a `.env` file, you can also set the environment variables directly on your server.
+
+-   `make deploy` -> Deploy the application and runs the migrations
